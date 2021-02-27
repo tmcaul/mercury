@@ -3,14 +3,14 @@ using LinearAlgebra
 using MLDatasets
 using Plots
 
-include("utils.jl");
-include("components.jl");
-include("training.jl");
+include("mercury/utils.jl");
+include("mercury/components.jl");
+include("mercury/training.jl");
 
 
 #%% -- Instantiate the network -- %%#
 # The net is simply a dictionary containing parameters,
-# activations pre- (A) and post- (Z) activation function.
+# activations post- (A) and pre- (Z) activation function.
 net=Dict("Layers"=>[], "A"=>[], "Z"=>[])
 
 # [[layer1_inputdim, layer1_outputdim] [layer2_inputdim, layer2_outputdim] [layer3_inputdim, layer3_outputdim] ... ]
@@ -45,8 +45,10 @@ results=train(net, mb_size, lr, epochs, train_x, test_x, train_y_one_hot, test_y
 plot([results["training_loss"], results["test_loss"]], lw=2, label=["Train" "Test"], legend=:topright)
 xlabel!("Epoch")
 ylabel!("Loss")
+savefig("results/training.png")
 
 #%%
 plot([results["training_acc"], results["test_acc"]], lw=2, label=["Train" "Test"], legend=:bottomright)
 xlabel!("Epoch")
 ylabel!("Accuracy")
+savefig("results/accuracy.png")

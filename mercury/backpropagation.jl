@@ -24,10 +24,9 @@ end;
 ## -- Calculate and accumulate gradients -- ##
 
 function calculate_gradient(dA, W, B, Z, A_prev, act_fn)
-    #m = size(A_prev, 1)
     dZ = dA.*gradient(Z, act_fn)
-    dW = (dZ * A_prev')# ./ m
-    dB = dZ# ./ m
+    dW = (dZ * A_prev')
+    dB = dZ
     dA_prev = W'*dZ
     out=[dA_prev, dW, dB]
     return out

@@ -1,5 +1,8 @@
 include("backpropagation.jl")
 
+# NOTE:
+# unlike the blog post, here we use y_hat as predictions and y as true values.
+
 # This function defines the training loop for a neural network.
 function train(net, mb_size, lr, epochs, train_x, test_x, train_y_one_hot, test_y_one_hot)
 
